@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!--
+  Página própria dos sites de prévia. O site publicado roda num iframe com sandbox SEM allow-same-origin (origem opaca: sem
+  IndexedDB, caches, cookies nem service worker do visualizador) e o documento dele (srcdoc) herda a política desta página.
+  Por isso a política aqui é mais aberta que a do index.html: o site precisa de scripts e estilos embutidos, de data: (os arquivos
+  do próprio site viram data: URL) e de fontes, imagens, vídeos e scripts de fora (https). A proteção contra o site não vem da CSP,
+  vem do sandbox. Em compensação esta página guarda a chave e NÃO tem nenhum innerHTML com dado do manifesto: nome e textos
+  entram só com textContent, e o site só é entregue ao iframe por srcdoc.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: data: blob:; style-src 'self' 'unsafe-inline' https: http: data:; img-src https: http: data: blob:; font-src https: http: data:; media-src https: http: data: blob:; connect-src 'self' https: http: wss: ws: data: blob:; frame-src https: http: data: blob:; object-src 'none'; base-uri 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#1D233B">
+<title>Prévia · Ginga Mídia</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body class="pagina-site">
+<div id="raiz"><main class="aviso" role="status"><p class="girar" aria-hidden="true"></p><h1>Abrindo o site…</h1></main></div>
+<div id="tela-site" class="tela tela-site" hidden><div id="painel-site"></div><div id="palco-site"></div></div>
+<noscript><main class="aviso"><h1>É preciso ligar o JavaScript</h1><p>Este visualizador precisa de JavaScript para abrir a prévia.</p></main></noscript>
+<script src="painel.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
